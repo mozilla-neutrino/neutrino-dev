@@ -48,8 +48,7 @@ test('valid preset production', (t) => {
   // NODE_ENV/command specific
   t.is(config.devtool, 'source-map');
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.is(validate(config), undefined);
 });
 
 test('valid preset development', (t) => {
@@ -70,10 +69,9 @@ test('valid preset development', (t) => {
   });
 
   // NODE_ENV/command specific
-  t.is(config.devtool, 'inline-sourcemap');
+  t.is(config.devtool, 'inline-source-map');
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.is(validate(config), undefined);
 });
 
 test('throws when polyfills defined', (t) => {

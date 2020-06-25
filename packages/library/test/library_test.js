@@ -49,18 +49,13 @@ test('valid preset production', (t) => {
   t.deepEqual(config.resolve.extensions, expectedExtensions);
   t.is(config.optimization, undefined);
   t.is(config.devServer, undefined);
-  t.deepEqual(config.stats, {
-    children: false,
-    entrypoints: false,
-    modules: false,
-  });
+  t.deepEqual(config.stats, undefined);
 
   // NODE_ENV/command specific
   t.is(config.devtool, 'source-map');
   t.not(config.externals, undefined);
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.is(validate(config), undefined);
 });
 
 test('valid preset development', (t) => {
@@ -75,18 +70,13 @@ test('valid preset development', (t) => {
   t.deepEqual(config.resolve.extensions, expectedExtensions);
   t.is(config.optimization, undefined);
   t.is(config.devServer, undefined);
-  t.deepEqual(config.stats, {
-    children: false,
-    entrypoints: false,
-    modules: false,
-  });
+  t.deepEqual(config.stats, undefined);
 
   // NODE_ENV/command specific
   t.is(config.devtool, 'source-map');
   t.not(config.externals, undefined);
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.is(validate(config), undefined);
 });
 
 test('removes webpack externals when NODE_ENV=test', (t) => {
@@ -105,18 +95,14 @@ test('valid preset Node.js target', (t) => {
   const api = new Neutrino();
   api.use(mw({ name: 'alpha', target: 'node' }));
 
-  const errors = validate(api.config.toConfig());
-
-  t.is(errors.length, 0);
+  t.is(validate(api.config.toConfig()), undefined);
 });
 
 test('valid preset commonjs2 libraryTarget', (t) => {
   const api = new Neutrino();
   api.use(mw({ name: 'alpha', libraryTarget: 'commonjs2' }));
 
-  const errors = validate(api.config.toConfig());
-
-  t.is(errors.length, 0);
+  t.is(validate(api.config.toConfig()), undefined);
 });
 
 test('targets option test', (t) => {

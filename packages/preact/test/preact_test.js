@@ -24,9 +24,7 @@ test('valid preset production', (t) => {
   const api = new Neutrino();
   api.use(mw());
 
-  const errors = validate(api.config.toConfig());
-
-  t.is(errors.length, 0);
+  t.is(validate(api.config.toConfig()), undefined);
 });
 
 test('valid preset development', (t) => {
@@ -34,9 +32,7 @@ test('valid preset development', (t) => {
   const api = new Neutrino();
   api.use(mw());
 
-  const errors = validate(api.config.toConfig());
-
-  t.is(errors.length, 0);
+  t.is(validate(api.config.toConfig()), undefined);
 });
 
 test('updates lint config by default', (t) => {

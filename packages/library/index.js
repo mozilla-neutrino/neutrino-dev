@@ -100,19 +100,16 @@ module.exports = (opts = {}) => {
       ])
       .end()
       .end()
-      .node.when(options.target === 'web', (node) => {
-        node.set('Buffer', false).set('fs', 'empty').set('tls', 'empty');
-      })
-      .when(options.target === 'node', (node) => {
-        node.set('__filename', false).set('__dirname', false);
-      })
-      .end()
+      // .when(options.target === 'node', (node) => {
+      //   node.set('__filename', false).set('__dirname', false);
+      // })
+      // .end()
       // The default output is too noisy, particularly with multiple entrypoints.
-      .stats({
-        children: false,
-        entrypoints: false,
-        modules: false,
-      })
+      // .stats({
+      //   children: false,
+      //   entrypoints: false,
+      //   modules: false,
+      // })
       .when(process.env.NODE_ENV === 'production', (config) => {
         config.when(options.clean !== false, () =>
           neutrino.use(clean(options.clean)),

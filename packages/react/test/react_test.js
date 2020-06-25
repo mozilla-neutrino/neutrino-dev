@@ -32,8 +32,7 @@ test('valid preset production', (t) => {
     newExtensions,
   );
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.is(validate(config), undefined);
 });
 
 test('valid preset development', (t) => {
@@ -48,8 +47,7 @@ test('valid preset development', (t) => {
     newExtensions,
   );
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.is(validate(config), undefined);
 });
 
 test('valid preset test', (t) => {
@@ -64,8 +62,7 @@ test('valid preset test', (t) => {
     newExtensions,
   );
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.is(validate(config), undefined);
 });
 
 test('updates lint config by default', (t) => {
