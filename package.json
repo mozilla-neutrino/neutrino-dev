@@ -56,7 +56,7 @@
     "verdaccio": "^4.10.0",
     "verdaccio-memory": "^9.7.2",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.0.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
