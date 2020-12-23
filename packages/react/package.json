@@ -38,8 +38,8 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "devDependencies": {
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-hot-loader": "^4.13.0"
   },
   "peerDependencies": {
