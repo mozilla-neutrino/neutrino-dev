@@ -8,12 +8,12 @@ const fixture = join(__dirname, 'fixtures/.neutrinorc.js');
 const transform = resolve(__dirname, '../transforms/middleware.js');
 const snapshot = readFileSync(join(__dirname, 'fixtures/.neutrinorc.js.txt'))
   .toString()
-  .replace(/\r\n/g, '\n')
   .trim();
 
 test('performs valid transformation', (t) => {
   const output = execSync(`${jscodeshift} ${fixture} -t ${transform} -d -p -s`)
     .toString()
+    .replace(/\r\n/g, '\n')
     .trim();
 
   t.is(output, snapshot);
