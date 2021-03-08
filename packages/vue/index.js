@@ -1,5 +1,6 @@
 const web = require('@neutrinojs/web');
 const merge = require('deepmerge');
+const { aliasPlugins } = require('@neutrinojs/eslint');
 
 const applyUse = (from) => (to) => {
   from.uses.values().forEach((use) => {
@@ -89,6 +90,7 @@ module.exports = (opts = {}) => (neutrino) => {
 
   const lintRule = neutrino.config.module.rules.get('lint');
   if (lintRule) {
+    aliasPlugins({ plugins: ['vue'] }, __filename);
     // We need to re-set the extension list used by the eslint settings
     // since when it was generated it didn't include the vue extension.
     lintRule.test(neutrino.regexFromExtensions());
@@ -101,9 +103,9 @@ module.exports = (opts = {}) => (neutrino) => {
           : merge(lintOptions, {
               baseConfig: {
                 extends: ['plugin:vue/base'],
-                parser: 'vue-eslint-parser',
+                parser: require.resolve('vue-eslint-parser'),
                 parserOptions: {
-                  parser: 'babel-eslint',
+                  parser: require.resolve('babel-eslint'),
                 },
                 plugins: ['vue'],
               },

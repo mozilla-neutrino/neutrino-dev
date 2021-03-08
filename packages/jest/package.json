@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
+    "@neutrinojs/eslint": "9.4.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.6.3",
     "deepmerge": "^1.5.2",

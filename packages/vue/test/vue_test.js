@@ -50,26 +50,13 @@ test('updates lint config by default', (t) => {
   api.use(mw());
 
   const lintRule = api.config.module.rule('lint');
+  const eslintConfig = lintRule.use('eslint').get('options').baseConfig;
+
   t.deepEqual(lintRule.get('test'), /\.(mjs|jsx|vue|js)$/);
-  t.deepEqual(lintRule.use('eslint').get('options').baseConfig, {
-    env: {
-      browser: true,
-      commonjs: true,
-      es6: true,
-    },
-    extends: ['plugin:vue/base'],
-    globals: {
-      process: true,
-    },
-    parser: 'vue-eslint-parser',
-    parserOptions: {
-      ecmaVersion: 2018,
-      parser: 'babel-eslint',
-      sourceType: 'module',
-    },
-    plugins: ['babel', 'vue'],
-    root: true,
-  });
+  t.assert(eslintConfig.extends.includes('plugin:vue/base'));
+  t.assert(eslintConfig.parser.includes('vue-eslint-parser'));
+  t.assert(eslintConfig.parserOptions.parser.includes('babel-eslint'));
+  t.assert(eslintConfig.plugins.includes('vue'));
 });
 
 test('does not update lint config if useEslintrc true', (t) => {

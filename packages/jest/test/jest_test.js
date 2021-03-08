@@ -160,7 +160,7 @@ test('exposes babel config without babel-loader specific options', (t) => {
   t.false('customize' in babelOptions);
 });
 
-test('configures webpack aliases in moduleNameMapper correctly', (t) => {
+test('configures absolute webpack aliases in moduleNameMapper correctly', (t) => {
   const api = new Neutrino();
   const reactPath = path.resolve(path.join('node_modules', 'react'));
   api.use(reactPreset());
@@ -171,6 +171,33 @@ test('configures webpack aliases in moduleNameMapper correctly', (t) => {
   t.true(
     Object.entries(config.moduleNameMapper).some(([key, alias]) => {
       return key === '^react$' && alias === reactPath;
+    }),
+  );
+});
+
+test('configures package webpack aliases in moduleNameMapper correctly', (t) => {
+  const api = new Neutrino();
+  api.use(mw());
+  api.config.resolve.alias.set('_', 'lodash');
+  const config = api.outputHandlers.get('jest')(api);
+
+  t.true(
+    Object.entries(config.moduleNameMapper).some(([key, alias]) => {
+      return key === '^_$' && alias === 'lodash';
+    }),
+  );
+});
+
+test('configures relative webpack aliases in moduleNameMapper correctly', (t) => {
+  const api = new Neutrino();
+  api.use(mw());
+  api.config.resolve.alias.set('images', './src/images');
+  const config = api.outputHandlers.get('jest')(api);
+
+  t.true(
+    Object.entries(config.moduleNameMapper).some(([key, alias]) => {
+      const urlAlias = alias.replace(/\\/g, '/'); // consider OS difference
+      return key === '^images$' && urlAlias === '<rootDir>/src/images';
     }),
   );
 });

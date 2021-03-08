@@ -1,6 +1,7 @@
 const banner = require('@neutrinojs/banner');
 const compileLoader = require('@neutrinojs/compile-loader');
 const clean = require('@neutrinojs/clean');
+const pnp = require('@neutrinojs/pnp');
 const babelMerge = require('babel-merge');
 const merge = require('deepmerge');
 const nodeExternals = require('webpack-node-externals');
@@ -63,6 +64,7 @@ module.exports = (opts = {}) => {
       (pkg.dependencies && 'source-map-support' in pkg.dependencies) ||
       (pkg.devDependencies && 'source-map-support' in pkg.devDependencies);
 
+    neutrino.use(pnp());
     neutrino.use(
       compileLoader({
         include: [neutrino.options.source, neutrino.options.tests],

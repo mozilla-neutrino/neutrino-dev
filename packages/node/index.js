@@ -2,6 +2,7 @@ const banner = require('@neutrinojs/banner');
 const compileLoader = require('@neutrinojs/compile-loader');
 const clean = require('@neutrinojs/clean');
 const startServer = require('@neutrinojs/start-server');
+const pnp = require('@neutrinojs/pnp');
 const babelMerge = require('babel-merge');
 const nodeExternals = require('webpack-node-externals');
 const { basename, parse, format } = require('path');
@@ -39,6 +40,7 @@ module.exports = (opts = {}) => {
     );
     const coreJsVersion = neutrino.getDependencyVersion('core-js');
 
+    neutrino.use(pnp());
     neutrino.use(
       compileLoader({
         include: [neutrino.options.source, neutrino.options.tests],

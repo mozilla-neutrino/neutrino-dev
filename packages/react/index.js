@@ -1,6 +1,7 @@
 const web = require('@neutrinojs/web');
 const babelMerge = require('babel-merge');
 const merge = require('deepmerge');
+const { aliasPlugins } = require('@neutrinojs/eslint');
 
 module.exports = (opts = {}) => (neutrino) => {
   const options = merge(
@@ -53,6 +54,7 @@ module.exports = (opts = {}) => (neutrino) => {
 
   const lintRule = neutrino.config.module.rules.get('lint');
   if (lintRule) {
+    aliasPlugins({ plugins: ['react', 'react-hooks'] }, __filename);
     lintRule.use('eslint').tap(
       // Don't adjust the lint configuration for projects using their own .eslintrc.
       (lintOptions) =>

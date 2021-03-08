@@ -6,6 +6,7 @@ const compileLoader = require('@neutrinojs/compile-loader');
 const htmlTemplate = require('@neutrinojs/html-template');
 const clean = require('@neutrinojs/clean');
 const devServer = require('@neutrinojs/dev-server');
+const pnp = require('@neutrinojs/pnp');
 const babelMerge = require('babel-merge');
 const merge = require('deepmerge');
 const { ConfigurationError } = require('neutrino/errors');
@@ -162,6 +163,7 @@ module.exports = (opts = {}) => (neutrino) => {
     neutrino.config.devtool(devtool);
   }
 
+  neutrino.use(pnp());
   neutrino.use(htmlLoader());
   neutrino.use(
     compileLoader({

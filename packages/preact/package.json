@@ -31,6 +31,7 @@
     "@babel/core": "^7.12.10",
     "@babel/plugin-transform-react-jsx": "^7.12.12",
     "@neutrinojs/web": "9.5.0",
+    "@neutrinojs/eslint": "9.4.0",
     "babel-merge": "^3.0.0",
     "deepmerge": "^1.5.2",
     "eslint-plugin-react": "^7.21.5"

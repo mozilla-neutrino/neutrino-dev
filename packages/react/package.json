@@ -30,6 +30,7 @@
   "dependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-react": "^7.12.10",
+    "@neutrinojs/eslint": "9.4.0",
     "@neutrinojs/web": "9.5.0",
     "babel-merge": "^3.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",

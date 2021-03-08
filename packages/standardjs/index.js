@@ -3,6 +3,9 @@ const { rules: standardRules } = require('eslint-config-standard');
 
 module.exports = ({ eslint = {}, ...opts } = {}) => (neutrino) => {
   const baseConfig = eslint.baseConfig || {};
+  const usedPlugins = ['react', 'import', 'node', 'promise', 'standard'];
+  const usedResolvers = { node: {} };
+
   neutrino.use(
     lint({
       ...opts,
@@ -38,5 +41,20 @@ module.exports = ({ eslint = {}, ...opts } = {}) => (neutrino) => {
         },
       },
     }),
+  );
+
+  lint.aliasPlugins(
+    {
+      plugins: usedPlugins,
+    },
+    __filename,
+  );
+  lint.aliasImportResolvers(
+    {
+      settings: {
+        'import/resolver': usedResolvers,
+      },
+    },
+    __filename,
   );
 };

@@ -186,6 +186,165 @@ The following is a list of rules and their identifiers which can be overridden:
 | ------ | ------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | `lint` | By default, lints JS and JSX files from the `src` and `test` directories using ESLint. Contains a single loader named `eslint`. | all      |
 
+## Utility functions
+
+### Plugins aliasing
+
+When developing your custom ESLint preset, you may face a problem with sharable
+ESLint configs and plugins. This is due to ESLint plugins resolving system which
+searches for plugins packages in the project root. This may fail in some
+environments, especially in Plug'n'Play. This module provides `aliasPlugins()`
+function to resolve this issue in your package providing aliases from package
+names to absolute paths. You can import it in 2 ways:
+`require('@neutrinojs/eslint/alias-plugins')` or
+`require('@neutrinojs/eslint').aliasPlugins`. Example:
+
+```js
+const eslint = require('@neutrinojs/eslint');
+const eslintBaseConfig = { plugins: ['node'] };
+
+neutrino.use(
+  eslint({
+    eslint: {
+      baseConfig: eslintBaseConfig,
+    },
+  }),
+);
+
+lint.aliasPlugins(
+  // ESLint config that contains used plugins
+  eslintBaseConfig,
+  // Path to the current module file, so aliases can be correctly resolved from your package
+  // In most cases it is always `__filename`
+  __filename,
+);
+```
+
+If you use 3rd party configs, plugins will not be present in the configuration.
+So you have to list them manually just for aliasing. For example:
+
+```js
+const eslint = require('@neutrinojs/eslint');
+const usedPlugins = ['react', 'react-hooks', 'jsx-a11y', 'import'];
+const eslintBaseConfig = {
+  extends: [
+    require.resolve('eslint-config-airbnb'),
+    require.resolve('eslint-config-airbnb/hooks'),
+  ],
+};
+
+neutrino.use(
+  eslint({
+    eslint: {
+      baseConfig: eslintBaseConfig,
+    },
+  }),
+);
+
+lint.aliasPlugins(
+  // ESLint config that contains only used plugins
+  { plugins: usedPlugins },
+  // Path to the current module file, so aliases can be correctly resolved from your package
+  // In most cases it is always `__filename`
+  __filename,
+);
+```
+
+**Important! Make sure all aliased plugins are present in your dependencies in
+package.json**
+
+```json
+{
+  "dependencies": {
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jsx-a11y": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest"
+  }
+}
+```
+
+### Import resolvers aliasing
+
+Also you may have problems with allocation of import resolvers when
+`eslint-plugin-import` is used. This can happen in some environments, especially
+in Plug'n'Play. This module provides `aliasImportResolvers()` function to
+resolve this issue in your package providing aliases from package names to
+absolute paths. You can import it in 2 ways:
+`require('@neutrinojs/eslint/alias-import-resolvers')` or
+`require('@neutrinojs/eslint').aliasImportResolvers`. Example:
+
+```js
+const eslint = require('@neutrinojs/eslint');
+const eslintBaseConfig = {
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.json'],
+      },
+    },
+  },
+};
+
+neutrino.use(
+  eslint({
+    eslint: {
+      baseConfig: eslintBaseConfig,
+    },
+  }),
+);
+
+lint.aliasImportResolvers(
+  // ESLint config that contains settings
+  eslintBaseConfig,
+  // Path to the current module file, so aliases can be correctly resolved from your package
+  // In most cases it is always `__filename`
+  __filename,
+);
+```
+
+If you use 3rd party configs, settings will not be present in the configuration.
+So you have to imitate them manually just for aliasing. For example:
+
+```js
+const eslint = require('@neutrinojs/eslint');
+const usedResolvers = { node: {} };
+const eslintBaseConfig = {
+  extends: [require.resolve('eslint-config-standard')],
+};
+
+neutrino.use(
+  eslint({
+    eslint: {
+      baseConfig: eslintBaseConfig,
+    },
+  }),
+);
+
+lint.aliasPlugins(
+  // ESLint config that contains only used resolvers
+  {
+    settings: {
+      'import/resolver': usedResolvers,
+    },
+  },
+  // Path to the current module file, so aliases can be correctly resolved from your package
+  // In most cases it is always `__filename`
+  __filename,
+);
+```
+
+**Important! Make sure all aliased import resolvers are present in your
+dependencies in package.json**
+
+```json
+{
+  "dependencies": {
+    "eslint-import-resolver-node": "latest"
+  }
+}
+```
+
 ## Contributing
 
 This middleware is part of the

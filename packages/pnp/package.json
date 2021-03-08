@@ -1,20 +1,21 @@
 {
-  "name": "@neutrinojs/eslint",
-  "version": "9.5.0",
-  "description": "Neutrino middleware for linting source code using ESLint",
+  "name": "@neutrinojs/pnp",
+  "version": "9.4.0",
+  "description": "Neutrino middleware for Plug'n'Play support",
   "main": "index.js",
   "keywords": [
     "neutrino",
     "neutrino-middleware",
-    "lint",
-    "eslint"
+    "pnp",
+    "plug and play",
+    "yarn2"
   ],
-  "author": "Eli Perelman <eli@eliperelman.com>",
+  "author": "Constantine Genchevsky <const.gen@gmail.com>",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/neutrinojs/neutrino.git",
-    "directory": "packages/eslint"
+    "directory": "packages/pnp"
   },
   "homepage": "https://neutrinojs.org",
   "bugs": "https://github.com/neutrinojs/neutrino/issues",
@@ -27,19 +28,11 @@
     "yarn": ">=1.2.1"
   },
   "dependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-babel": "^5.3.1",
-    "module-alias": "^2.2.2"
+    "pnp-webpack-plugin": "^1.6.4",
+    "module-alias": "2.2.2"
   },
   "peerDependencies": {
-    "eslint": "^6.0.0 || ^7.0.0",
     "neutrino": "^9.0.0",
     "webpack": "^4.0.0"
-  },
-  "peerDependenciesMeta": {
-    "webpack": {
-      "optional": true
-    }
   }
 }

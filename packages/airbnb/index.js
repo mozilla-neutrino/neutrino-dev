@@ -8,6 +8,9 @@ const {
 
 module.exports = ({ eslint = {}, ...opts } = {}) => (neutrino) => {
   const baseConfig = eslint.baseConfig || {};
+  const usedPlugins = ['react', 'react-hooks', 'jsx-a11y', 'import'];
+  const usedResolvers = { node: {} };
+
   neutrino.use(
     lint({
       ...opts,
@@ -44,5 +47,20 @@ module.exports = ({ eslint = {}, ...opts } = {}) => (neutrino) => {
         },
       },
     }),
+  );
+
+  lint.aliasPlugins(
+    {
+      plugins: usedPlugins,
+    },
+    __filename,
+  );
+  lint.aliasImportResolvers(
+    {
+      settings: {
+        'import/resolver': usedResolvers,
+      },
+    },
+    __filename,
   );
 };

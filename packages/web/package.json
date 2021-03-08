@@ -37,6 +37,7 @@
     "@neutrinojs/html-loader": "9.5.0",
     "@neutrinojs/html-template": "9.5.0",
     "@neutrinojs/image-loader": "9.5.0",
+    "@neutrinojs/pnp": "9.4.0",
     "@neutrinojs/style-loader": "9.5.0",
     "babel-merge": "^3.0.0",
     "deepmerge": "^1.5.2"

@@ -40,6 +40,7 @@
     "@neutrinojs/banner": "9.5.0",
     "@neutrinojs/clean": "9.5.0",
     "@neutrinojs/compile-loader": "9.5.0",
+    "@neutrinojs/pnp": "9.4.0",
     "babel-merge": "^3.0.0",
     "deepmerge": "^1.5.2",
     "webpack-node-externals": "^1.7.2"
