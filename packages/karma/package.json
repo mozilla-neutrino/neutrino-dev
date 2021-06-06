@@ -34,7 +34,7 @@
     "karma-coverage": "^2.0.3",
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-webpack": "^4.0.2",
+    "karma-webpack": "^5.0.0",
     "lodash.omit": "^4.5.0",
     "mocha-coverage-reporter": "^0.0.1"
   },
