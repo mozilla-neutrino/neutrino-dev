@@ -70,9 +70,6 @@ module.exports = (opts = {}) => {
     neutrino.config
       .when(sourceMap, () => neutrino.use(banner()))
       .target('node')
-      .node.set('__filename', false)
-      .set('__dirname', false)
-      .end()
       .devtool('source-map')
       .externals([nodeExternals({ whitelist: [/^webpack/] })])
       .context(neutrino.options.root)
@@ -104,7 +101,7 @@ module.exports = (opts = {}) => {
           }),
         );
         config
-          .devtool('inline-sourcemap')
+          .devtool('inline-source-map')
           .output.devtoolModuleFilenameTemplate('[absolute-resource-path]')
           .end()
           .when(options.hot, (config) => {

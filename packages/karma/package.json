@@ -34,7 +34,7 @@
     "karma-coverage": "^2.0.3",
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-webpack": "^4.0.2",
+    "karma-webpack": "^5.0.0",
     "lodash.omit": "^4.5.0",
     "mocha-coverage-reporter": "^0.0.1"
   },
@@ -43,6 +43,6 @@
     "karma-cli": "^2.0.0",
     "mocha": "^6.0.0 || ^7.0.0 || ^8.0.0",
     "neutrino": "^9.0.0",
-    "webpack": "^4.0.0"
+    "webpack": "^5.0.0"
   }
 }

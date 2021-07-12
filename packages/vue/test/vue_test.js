@@ -26,10 +26,8 @@ test('valid preset production', (t) => {
   api.use(mw());
   const config = api.config.toConfig();
 
-  const errors = validate(config);
   t.deepEqual(config.resolve.extensions, expectedExtensions);
-
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('valid preset development', (t) => {
@@ -38,10 +36,8 @@ test('valid preset development', (t) => {
   api.use(mw());
   const config = api.config.toConfig();
 
-  const errors = validate(config);
   t.deepEqual(config.resolve.extensions, expectedExtensions);
-
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('updates lint config by default', (t) => {

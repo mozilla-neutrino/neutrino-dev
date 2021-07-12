@@ -59,8 +59,7 @@ test('valid preset production', (t) => {
   t.is(config.devtool, 'source-map');
   t.not(config.externals, undefined);
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('valid preset development', (t) => {
@@ -85,8 +84,7 @@ test('valid preset development', (t) => {
   t.is(config.devtool, 'source-map');
   t.not(config.externals, undefined);
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('removes webpack externals when NODE_ENV=test', (t) => {
@@ -105,18 +103,18 @@ test('valid preset Node.js target', (t) => {
   const api = new Neutrino();
   api.use(mw({ name: 'alpha', target: 'node' }));
 
-  const errors = validate(api.config.toConfig());
+  const config = api.config.toConfig();
 
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('valid preset commonjs2 libraryTarget', (t) => {
   const api = new Neutrino();
   api.use(mw({ name: 'alpha', libraryTarget: 'commonjs2' }));
 
-  const errors = validate(api.config.toConfig());
+  const config = api.config.toConfig();
 
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('targets option test', (t) => {

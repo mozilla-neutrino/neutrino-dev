@@ -9,8 +9,8 @@ image files from modules.
 
 - Node.js 10+
 - Yarn v1.2.1+, or npm v5.4+
-- Neutrino 9
-- webpack 4
+- neutrino 10
+- webpack 5
 
 ## Installation
 

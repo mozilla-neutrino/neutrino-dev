@@ -9,8 +9,8 @@ Server for fast development cycles.
 
 - Node.js 10+
 - Yarn v1.2.1+, or npm v5.4+
-- Neutrino 9
-- webpack 4
+- neutrino 10
+- webpack 5
 - webpack-dev-server 3
 
 ## Installation
