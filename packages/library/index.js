@@ -100,13 +100,6 @@ module.exports = (opts = {}) => {
       ])
       .end()
       .end()
-      .node.when(options.target === 'web', (node) => {
-        node.set('Buffer', false).set('fs', 'empty').set('tls', 'empty');
-      })
-      .when(options.target === 'node', (node) => {
-        node.set('__filename', false).set('__dirname', false);
-      })
-      .end()
       // The default output is too noisy, particularly with multiple entrypoints.
       .stats({
         children: false,

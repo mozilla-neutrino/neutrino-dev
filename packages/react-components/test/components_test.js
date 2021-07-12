@@ -37,8 +37,7 @@ test('valid preset production', (t) => {
   t.is(config.devtool, 'source-map');
   t.is(config.devServer, undefined);
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('valid preset development', (t) => {
@@ -53,6 +52,5 @@ test('valid preset development', (t) => {
   t.is(config.optimization.runtimeChunk, 'single');
   t.is(config.optimization.splitChunks.chunks, 'all');
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });

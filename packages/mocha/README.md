@@ -16,8 +16,8 @@ projects with the Mocha test runner.
 
 - Node.js 10+
 - Yarn v1.2.1+, or npm v5.4+
-- Neutrino 9 and one of the Neutrino build presets
-- webpack 4
+- neutrino 10 and one of the Neutrino build presets
+- webpack 5
 - Mocha 6 or 7
 
 ## Quickstart

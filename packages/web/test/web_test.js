@@ -42,13 +42,11 @@ test('valid preset production', (t) => {
 
   // NODE_ENV/command specific
   t.true(config.optimization.minimize);
-  t.false(config.optimization.splitChunks.name);
   t.is(config.output.publicPath, '/');
   t.is(config.devtool, undefined);
   t.is(config.devServer, undefined);
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('valid preset development', (t) => {
@@ -71,8 +69,7 @@ test('valid preset development', (t) => {
 
   // NODE_ENV/command specific
   t.false(config.optimization.minimize);
-  t.true(config.optimization.splitChunks.name);
-  t.is(config.devtool, 'cheap-module-eval-source-map');
+  t.is(config.devtool, 'eval-cheap-module-source-map');
   t.deepEqual(config.devServer, {
     historyApiFallback: true,
     hot: true,
@@ -86,8 +83,7 @@ test('valid preset development', (t) => {
     },
   });
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('valid preset test', (t) => {
@@ -110,12 +106,10 @@ test('valid preset test', (t) => {
 
   // NODE_ENV/command specific
   t.false(config.optimization.minimize);
-  t.true(config.optimization.splitChunks.name);
   t.is(config.devtool, 'source-map');
   t.is(config.devServer, undefined);
 
-  const errors = validate(config);
-  t.is(errors.length, 0);
+  t.notThrows(() => validate(config));
 });
 
 test('devtool string option production', (t) => {
